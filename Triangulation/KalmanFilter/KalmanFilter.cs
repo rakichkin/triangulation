@@ -5,7 +5,6 @@ public class KalmanFilter
     public double X { get; private set; }
     public double Y { get; private set; }
 
-    // Параметры фильтра
     private double varX;
     private double varY;
     private double processNoise;

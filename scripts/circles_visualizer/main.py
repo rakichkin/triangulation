@@ -5,30 +5,58 @@ import matplotlib.pyplot as plt
 import json
 
 def main():
-    data = deserialize_json()
+    arrowprops = {
+        'arrowstyle': '->',
+    }
 
-    plt.xlim(-200, 200)
-    plt.ylim(-200, 200)
+
+    triang_points = deserialize_points()
+    desired_point = deserialize_desired_point()
+
+    plt.xlim(0, 500)
+    plt.ylim(0, 500)
     plt.grid()
 
     axes = plt.gca()
     axes.set_aspect("equal")
 
-    for item in data:
+    flag = False
+
+    plt.plot([0, 0], [20, 20], '-b')
+    for item in triang_points:
         x = item['point']['x']
         y = item['point']['y']
         radius = item['distance']
-        matplotlib.patches.Circle((x, y), radius=1, fill=True)
+
         axes.add_patch(
             matplotlib.patches.Circle((x, y), radius=radius, fill=False)
         )
         axes.add_patch(
             matplotlib.patches.Circle((x, y), radius=1, fill=True)
         )
+
+        if flag:
+            plt.annotate('',
+                xy=(x, y),
+                xytext=(x, y+radius),
+                arrowprops=arrowprops)
+        else: 
+            plt.annotate('',
+                    xy=(x, y),
+                    xytext=(x-radius, y),
+                    arrowprops=arrowprops)
+        flag = not flag
+
+    plt.scatter(desired_point['x'], desired_point['y'], color='red')
     plt.show()
 
-def deserialize_json():
-    data_str = open('data.json')
+def deserialize_points():
+    data_str = open('trilateration_points.json')
+    data = json.load(data_str)
+    return data
+
+def deserialize_desired_point():
+    data_str = open('desired_point.json')
     data = json.load(data_str)
     return data
 

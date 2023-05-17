@@ -1,0 +1,30 @@
+[
+    {
+        "point": {
+            "x": 0,
+            "y": 0
+        },
+        "distance": 3
+    },
+    {
+        "point": {
+            "x": 3,
+            "y": 0
+        },
+        "distance": 4
+    },
+    {
+        "point": {
+            "x": 0,
+            "y": 4
+        },
+        "distance": 5
+    },
+    {
+        "point": {
+            "x": 3,
+            "y": 4
+        },
+        "distance": 4
+    }
+]
