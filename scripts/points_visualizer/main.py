@@ -29,7 +29,7 @@ def main():
     axes.set_aspect("equal")
 
     draw_points(src_positions, 'red')
-    draw_points(kalman_filter_points, 'blue')
+    # draw_points(kalman_filter_points, 'blue')
     draw_points(monte_carlo_points, 'green')
 
     plt.show()

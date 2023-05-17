@@ -1,6 +1,9 @@
 ﻿using Newtonsoft.Json;
-using System.Linq;
+
 using Triangulation.KalmanFilter;
+using Triangulation.Primitives;
+using Triangulation.Tools;
+
 
 namespace Triangulation;
 
@@ -8,9 +11,10 @@ public class Program
 {
 	static void Main(string[] args)
 	{
-		TrilaterationExample();
+		//WriteJson();
+		//TrilaterationExample();
 		//Kalman();
-		//MonteCarlo();
+		MonteCarlo();
 		//ParticleFilter();
 	}
 
@@ -31,7 +35,7 @@ public class Program
 
 		var src = JsonConvert.DeserializeObject<List<Position>>(
 			File.ReadAllText(dir + "gps_data.json"));
-		var filteredResults = new MonteCarlo_v3().Correct(src);
+		var filteredResults = new MonteCarlo(.05, 100000).Run(src);
 
 		File.WriteAllText(dir + "monte_carlo_results.json", JsonConvert.SerializeObject(filteredResults));
 	}
@@ -43,9 +47,6 @@ public class Program
 		var src = JsonConvert.DeserializeObject<List<Position>>(
 			File.ReadAllText(dir + "gps_data.json"));
 
-
-		
-
 		//File.WriteAllText(dir + "particle_filter_results.json", JsonConvert.SerializeObject(filteredResults));
 	}
 
@@ -53,10 +54,18 @@ public class Program
 	{
 		var circlesDir = "F:\\Triangulation\\scripts\\circles_visualizer\\";
 
-		var trilPointsStr = File.ReadAllText($"{circlesDir}\\trilateration_points.json");
+		var trilPointsStr = File.ReadAllText($"{circlesDir}\\trilateration_points3.json");
 		var trilPoints = JsonConvert.DeserializeObject<List<TriangulationPoint>>(trilPointsStr);
 
-		var result = Triangulation.TriangulateManyPoints(trilPoints!);
-		File.WriteAllText($"{circlesDir}\\desired_point.json", JsonConvert.SerializeObject(result, new PointFJsonConverter()));
+		var result = Triangulation.Triangulate(trilPoints!);
+		File.WriteAllText($"{circlesDir}\\desired_point.json", JsonConvert.SerializeObject(result));
+	}
+
+	private static void WriteJson()
+	{
+		var movement = CsvDataConverter.Convert("C:\\Users\\igors\\Desktop\\20230517_track\\track_points.csv");
+
+		File.WriteAllText("F:\\Triangulation\\scripts\\points_visualizer\\gps_data.json",
+			JsonConvert.SerializeObject(movement));
 	}
 }

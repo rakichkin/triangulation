@@ -1,6 +1,5 @@
-﻿using MathNet.Numerics.LinearAlgebra;
-using System.Drawing;
-using System.Linq;
+﻿using Triangulation.Primitives;
+
 
 namespace Triangulation;
 
@@ -17,7 +16,6 @@ public static class Triangulation
 		return point;
 	}
 
-	
 	// Принимает только три точки, работает хорошо
 	public static PointD Triangulate3Points(List<TriangulationPoint> triangulationPoints)
 	{
@@ -39,7 +37,7 @@ public static class Triangulation
 		return new PointD(x, y);
 	}
 
-	// Принимает любое количество точек, но с тремя точками работает так себе (алгоритм Лебо
+	// Принимает любое количество точек, но с тремя точками работает так себе (алгоритм Лебо)
 	public static PointD TriangulateManyPoints(List<TriangulationPoint> triangulationPoints)
 	{
 		var points = triangulationPoints.Select(tp => tp.Point).ToArray();

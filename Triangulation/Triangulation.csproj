@@ -9,11 +9,16 @@
 
   <ItemGroup>
     <Compile Remove="KalmanFilter\Class1.cs" />
+    <Compile Remove="PointFJsonConverter.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="MathNet.Numerics" Version="5.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Tools\" />
   </ItemGroup>
 
 </Project>

@@ -9,7 +9,6 @@ def main():
         'arrowstyle': '->',
     }
 
-
     triang_points = deserialize_points()
     desired_point = deserialize_desired_point()
 
@@ -31,9 +30,7 @@ def main():
         axes.add_patch(
             matplotlib.patches.Circle((x, y), radius=radius, fill=False)
         )
-        axes.add_patch(
-            matplotlib.patches.Circle((x, y), radius=1, fill=True)
-        )
+        plt.scatter(x, y, color='blue')
 
         if flag:
             plt.annotate('',
@@ -51,12 +48,12 @@ def main():
     plt.show()
 
 def deserialize_points():
-    data_str = open('trilateration_points.json')
+    data_str = open('circles_visualizer/trilateration_points3.json')
     data = json.load(data_str)
     return data
 
 def deserialize_desired_point():
-    data_str = open('desired_point.json')
+    data_str = open('circles_visualizer/desired_point.json')
     data = json.load(data_str)
     return data
 

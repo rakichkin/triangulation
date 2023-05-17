@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Runtime.Serialization;
 
-namespace Triangulation;
+namespace Triangulation.Primitives;
 
 [DataContract]
 public struct PointD
@@ -13,8 +13,8 @@ public struct PointD
     }
 
     [JsonProperty("x")]
-	public double X { get; set; }
+    public double X { get; set; }
 
-	[JsonProperty("y")]
-	public double Y { get; set; }
+    [JsonProperty("y")]
+    public double Y { get; set; }
 }

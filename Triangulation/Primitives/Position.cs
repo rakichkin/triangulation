@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Runtime.Serialization;
 
-namespace Triangulation.KalmanFilter;
+namespace Triangulation.Primitives;
 
 [DataContract]
 public record Position
