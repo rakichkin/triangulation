@@ -21,16 +21,16 @@ def main():
         if pos['point']['y'] > max_lim:
             max_lim = pos['point']['y']
 
-    plt.xlim(0, max_lim)
-    plt.ylim(0, max_lim)
+    plt.xlim(37.96, 38.01)
+    plt.ylim(59.11, 59.13)
     plt.grid()
 
     axes = plt.gca()
     axes.set_aspect("equal")
 
     draw_points(src_positions, 'red')
-    # draw_points(kalman_filter_points, 'blue')
-    draw_points(monte_carlo_points, 'green')
+    draw_points(kalman_filter_points, 'blue')
+    # draw_points(monte_carlo_points, 'green')
 
     plt.show()
 

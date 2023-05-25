@@ -48,7 +48,7 @@ def main():
     plt.show()
 
 def deserialize_points():
-    data_str = open('circles_visualizer/trilateration_points3.json')
+    data_str = open('circles_visualizer/trilateration_points4.json')
     data = json.load(data_str)
     return data
 
