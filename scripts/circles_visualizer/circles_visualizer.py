@@ -12,8 +12,8 @@ def main():
     triang_points = deserialize_points()
     desired_point = deserialize_desired_point()
 
-    plt.xlim(0, 500)
-    plt.ylim(0, 500)
+    plt.xlim(0, 2000)
+    plt.ylim(0, 2000)
     plt.grid()
 
     axes = plt.gca()
@@ -48,7 +48,7 @@ def main():
     plt.show()
 
 def deserialize_points():
-    data_str = open('circles_visualizer/trilateration_points4.json')
+    data_str = open('circles_visualizer/trilateration_points.json')
     data = json.load(data_str)
     return data
 

@@ -12,14 +12,14 @@ public class Program
 	static void Main(string[] args)
 	{
 		//WriteJson();
-		//TrilaterationExample();
-		Kalman();
+		TrilaterationExample();
+		//Kalman();
 		//MonteCarlo();
 	}
 
 	private static void Kalman()
 	{
-		var dir = @"F:\Triangulation\scripts\points_visualizer\";
+		var dir = @"F:\Severstal\Triangulation\scripts\points_visualizer\";
 
 		var src = JsonConvert.DeserializeObject<List<Position>>(
 			File.ReadAllText(dir + "gps_data.json"));
@@ -30,7 +30,7 @@ public class Program
 
 	private static void MonteCarlo()
 	{
-		var dir = @"F:\Triangulation\scripts\points_visualizer\";
+		var dir = @"F:\Severstal\Triangulation\scripts\points_visualizer\";
 
 		var src = JsonConvert.DeserializeObject<List<Position>>(
 			File.ReadAllText(dir + "gps_data.json"));
@@ -41,9 +41,9 @@ public class Program
 
 	private static void TrilaterationExample()
 	{
-		var circlesDir = "F:\\Triangulation\\scripts\\circles_visualizer\\";
+		var circlesDir = "F:\\Severstal\\Triangulation\\scripts\\circles_visualizer\\";
 
-		var trilPointsStr = File.ReadAllText($"{circlesDir}\\trilateration_points4.json");
+		var trilPointsStr = File.ReadAllText($"{circlesDir}\\trilateration_points.json");
 		var trilPoints = JsonConvert.DeserializeObject<List<TriangulationPoint>>(trilPointsStr);
 
 		var result = Triangulation.Triangulate(trilPoints!);
