@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 
-using Triangulation.KalmanFilter;
 using Triangulation.Primitives;
 using Triangulation.Tools;
 
@@ -20,12 +19,6 @@ public class Program
 	private static void Kalman()
 	{
 		var dir = @"F:\Severstal\Triangulation\scripts\points_visualizer\";
-
-		var src = JsonConvert.DeserializeObject<List<Position>>(
-			File.ReadAllText(dir + "gps_data.json"));
-		var filteredResults = new KalmanFilterProcessor(0.01, 0.1, src[0].Point.X, src[0].Point.Y, src[0].Point.X + 0.1, src[0].Point.Y + 0.1).ProcessPositions(src);
-
-		File.WriteAllText(dir + "kalman_results.json", JsonConvert.SerializeObject(filteredResults));
 	}
 
 	private static void MonteCarlo()

@@ -1,5 +1,7 @@
 ﻿namespace Triangulation.KalmanFilter;
 
+
+//ctor: 0.01, 0.1, src[0].Point.X, src[0].Point.Y, src[0].Point.X + 0.1, src[0].Point.Y + 0.1
 public class KalmanFilter
 {
     public double X { get; private set; }
