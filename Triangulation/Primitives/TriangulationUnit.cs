@@ -5,9 +5,15 @@ using Newtonsoft.Json;
 namespace Triangulation.Primitives;
 
 [DataContract]
-public record TriangulationPoint
+public record TriangulationUnit
 {
-    [JsonProperty("point")]
+	public TriangulationUnit(PointD staticPoint, double distanceToMovingPoint)
+	{
+		Point = staticPoint;
+		Distance = distanceToMovingPoint;
+	}
+
+	[JsonProperty("point")]
     public PointD Point { get; set; }
 
     [JsonProperty("distance")]

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -8,7 +8,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="KalmanFilter\Class1.cs" />
+    <Compile Remove="KalmanFilter\**" />
+    <Compile Remove="_KalmanFilter\**" />
+    <EmbeddedResource Remove="KalmanFilter\**" />
+    <EmbeddedResource Remove="_KalmanFilter\**" />
+    <None Remove="KalmanFilter\**" />
+    <None Remove="_KalmanFilter\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="PointFJsonConverter.cs" />
   </ItemGroup>
 
@@ -20,5 +28,4 @@
   <ItemGroup>
     <Folder Include="Tools\" />
   </ItemGroup>
-
 </Project>

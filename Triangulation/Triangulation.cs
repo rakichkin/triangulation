@@ -8,7 +8,7 @@ namespace Triangulation;
 
 public static class Triangulation
 {
-	public static PointD Triangulate(List<TriangulationPoint> triangulationPoints)
+	public static PointD Triangulate(List<TriangulationUnit> triangulationPoints)
 	{
 		if(triangulationPoints.Count < 3) throw new ArgumentException("Count of points should be more or equals than 3");
 		PointD point;
@@ -19,7 +19,7 @@ public static class Triangulation
 		return point;
 	}
 
-	private static PointD Triangulate3Points(List<TriangulationPoint> triangulationPoints)
+	private static PointD Triangulate3Points(List<TriangulationUnit> triangulationPoints)
 	{
 		var points = triangulationPoints.Select(tp => tp.Point).ToArray();
 		var distances = triangulationPoints.Select(tp => tp.Distance).ToArray();
@@ -39,7 +39,7 @@ public static class Triangulation
 		return new PointD(x, y);
 	}
 
-	private static PointD TriangulateManyPoints(List<TriangulationPoint> points)
+	private static PointD TriangulateManyPoints(List<TriangulationUnit> points)
 	{
 		if(points == null || points.Count < 3)
 			throw new ArgumentException("At least three points are required.");

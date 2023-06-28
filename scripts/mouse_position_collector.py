@@ -4,17 +4,13 @@ import json
 import time
 import math
 
-class Point:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-
 def main():
-    static_points = [ (0, 0), (1919, 0), (0,1079), (1919, 1079) ]
+    static_points = read_static_points()
     
     movements_detailed = list()
     movements_short = list()
     atexit.register(on_exit, movements_detailed, movements_short, static_points)
+
     while(True):
         _, _, (x, y) = win32gui.GetCursorInfo()
 
@@ -24,21 +20,17 @@ def main():
         
         append_mov_detailed(movements_detailed, static_points, distances, (x, y))
         movements_short.append(distances)
+        time.sleep(0.01)
         
-        time.sleep(0.1)
         
-        
+def read_static_points():
+    with open('config.json', 'r') as file:
+        points_str = file.read()
+        return json.loads(points_str)["static_points"]
+   
+
 def append_mov_detailed(mov_detailed: list, static_points: list(), distances: list(), moving_point: tuple):
     movement = list()
-    
-    # for i in range(0, len(static_points)):
-    #     movement.append({
-    #         "point": {
-    #             "x": static_points[i][0],
-    #             "y": static_points[i][1]
-    #         },
-    #         "distance": distances[i]
-    #     })
         
     for (point, distance) in zip(static_points, distances):
         movement.append({
@@ -63,12 +55,18 @@ def calculate_distance(point1, point2) -> float:
     return distance
 
 def on_exit(movements_detailed:list,  movements_short:list, static_points: list):
-    with open('mouse_position_collector\movements_detailed.json', 'w') as outfile:
+    with open('data\movements_detailed.json', 'w') as outfile:
         outfile.write(json.dumps(movements_detailed))
-    with open('mouse_position_collector\movements_short.json', 'w') as outfile:
+    with open('data\movements_short.json', 'w') as outfile:
         outfile.write(json.dumps(movements_short))
-    with open('mouse_position_collector\static_points.json', 'w') as outfile:
-        outfile.write(json.dumps(static_points))
+        
+    real_points = list()
+    for movement in movements_detailed:
+        moving_point = movement[len(movement)-1]['moving_point']
+        real_points.append(moving_point)
+        
+    with open('data\\real_moving_point_coords.json', 'w') as outfile:
+        outfile.write(json.dumps(real_points))
 
 if(__name__ == '__main__'):
     main()

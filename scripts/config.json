@@ -1,0 +1,17 @@
+{
+    "static_points":[
+        [0, 0], 
+        [1919, 0], 
+        [0, 1079], 
+        [1919, 1079]
+    ],
+    "kalman": {
+        "initial_error_covariance": 1,
+        "process_noize": 0.05,
+        "measurement_noize":0.05
+    },
+    "monte_carlo": {
+        "std_dev": 0.05,
+        "iteraions": 1000
+    }
+}
