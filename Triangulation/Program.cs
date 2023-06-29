@@ -29,11 +29,10 @@ public class Program
 		var trilateratedKalmanPoints = Trilaterate(filteredKalmanDistances, staticPoints);
 		WritePointsResult(trilateratedKalmanPoints, "kalman_triangulation.json");
 
-
 		// Производим триангуляцию на данных, отфильтрованных фильтром Монте-Карло
-		//var filteredMonteCarloResults = FilterResultMonteCarlo(allRawDistances);
-		//var trilateratedMonteCarloResults = Trilaterate(filteredMonteCarloResults, staticPoints);
-		//WriteTrianlulationResults(trilateratedMonteCarloResults, "monte_carlo_triangulation.json");
+		var filteredMonteCarloResults = FilterResultsMonteCarlo(allRawDistances);
+		var trilateratedMonteCarloResults = Trilaterate(filteredMonteCarloResults, staticPoints);
+		WritePointsResult(trilateratedMonteCarloResults, "monte_carlo_triangulation.json");
 	}
 
 	private static void WritePointsResult(List<PointD> trilateratedKalmanResults, string fileName)
@@ -93,30 +92,32 @@ public class Program
 		return result;
 	}
 
-	private static void TrilaterationExample()
+
+	private static List<List<double>> FilterResultsMonteCarlo(List<List<double>> allRawDistances)
 	{
-		var circlesDir = "F:\\Severstal\\Triangulation\\scripts\\circles_visualizer\\";
+		var filter = new MonteCarloFilter((double)_settings.MonteCarlo["std_dev"],
+			(int)_settings.MonteCarlo["iteraions"]);
 
-		var trilPointsStr = File.ReadAllText($"{circlesDir}\\trilateration_points.json");
-		var trilPoints = JsonConvert.DeserializeObject<List<TriangulationUnit>>(trilPointsStr);
+		var filteredResults = new List<List<double>>();
+		for(int i = 0; i < allRawDistances!.Count; i++)
+		{
+			filteredResults.Add(new List<double>());
+			for(int j = 0; j < allRawDistances[i].Count; j++)
+			{
+				filteredResults[i].Add(filter.Filter(allRawDistances[i][j]));
+			}
+		}
 
-		var result = Triangulation.Triangulate(trilPoints!);
-		File.WriteAllText($"{circlesDir}\\desired_point.json", JsonConvert.SerializeObject(result));
+		return filteredResults;
 	}
-
-	//private static List<double[]> FilterResultsMonteCarlo(List<List<double>> allRawDistances)
+	//private static void TrilaterationExample()
 	//{
+	//	var circlesDir = "F:\\Severstal\\Triangulation\\scripts\\circles_visualizer\\";
 
-	//}
+	//	var trilPointsStr = File.ReadAllText($"{circlesDir}\\trilateration_points.json");
+	//	var trilPoints = JsonConvert.DeserializeObject<List<TriangulationUnit>>(trilPointsStr);
 
-	//private static void MonteCarlo()
-	//{
-	//	var dir = @"F:\Severstal\Triangulation\scripts\points_visualizer\";
-
-	//	var src = JsonConvert.DeserializeObject<List<Position>>(
-	//		File.ReadAllText(dir + "gps_data.json"));
-	//	var filteredResults = new MonteCarlo(.05, 100000).Run(src);
-
-	//	File.WriteAllText(dir + "monte_carlo_results.json", JsonConvert.SerializeObject(filteredResults));
+	//	var result = Triangulation.Triangulate(trilPoints!);
+	//	File.WriteAllText($"{circlesDir}\\desired_point.json", JsonConvert.SerializeObject(result));
 	//}
 }

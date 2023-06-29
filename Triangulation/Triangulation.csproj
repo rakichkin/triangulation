@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <Compile Remove="PointFJsonConverter.cs" />
+    <Compile Remove="_MonteCarlo.cs" />
   </ItemGroup>
 
   <ItemGroup>

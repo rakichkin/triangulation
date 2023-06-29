@@ -12,7 +12,7 @@ def main():
     src_point_coords = deserialize_json('.\\data\\real_moving_point_coords.json')
     unfiltered_triang_point_coord = deserialize_json('.\\data\\unfiltered_triangulation.json')
     kalman_triang_point_coord = deserialize_json('.\\data\\kalman_triangulation.json')
-    # mkarlo_triang_point_coord = deserialize_json('data\\.json')
+    mkarlo_triang_point_coord = deserialize_json('.\\data\\monte_carlo_triangulation.json')
     
     figure, subplots = plt.subplots(2, 2, figsize=(19.2, 10.8), dpi=100)
     
@@ -37,10 +37,10 @@ def main():
     subplots[1, 0].set_title("Kalman Filter")
     subplots[1, 0].grid(True)
 
-    # for point in mkarlo_triang_point_coord:
-    #     subplot[1, 1].plot(point['x'], point['y'], marker="o", markersize=4, markeredgecolor="red", markerfacecolor="red")
+    for point in mkarlo_triang_point_coord:
+        subplots[1, 1].plot(point['x'], point['y'], marker="o", markersize=4, markeredgecolor="red", markerfacecolor="red")
     subplots[1, 1].set_title("Monte-Carlo filter")
-    # subplot[1,1].grid(True)
+    subplots[1,1].grid(True)
 
 
     # figure.show()

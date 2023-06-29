@@ -1,7 +1,6 @@
-﻿using MathNet.Numerics.LinearAlgebra.Double;
-using MathNet.Numerics.LinearAlgebra.Solvers;
-using MathNet.Numerics.LinearAlgebra.Factorization;
-using Triangulation.Primitives;
+﻿using Triangulation.Primitives;
+
+using MathNet.Numerics.LinearAlgebra.Double;
 
 
 namespace Triangulation;

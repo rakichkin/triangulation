@@ -1,34 +1,39 @@
 from win32 import win32gui
+import ctypes
 import atexit
 import json
 import time
 import math
 
 def main():
-    static_points = read_static_points()
+    config = read_config()
+    
+    static_points = config['static_points']
     
     movements_detailed = list()
     movements_short = list()
     atexit.register(on_exit, movements_detailed, movements_short, static_points)
-
+    
     while(True):
         _, _, (x, y) = win32gui.GetCursorInfo()
 
+        scaleFactor = ctypes.windll.shcore.GetScaleFactorForDevice(0) / 100
+        x = x * scaleFactor
+        y = y * scaleFactor
+        
         distances = list()
         for p in static_points:
             distances.append(calculate_distance(p, (x, y)))
         
         append_mov_detailed(movements_detailed, static_points, distances, (x, y))
         movements_short.append(distances)
-        time.sleep(0.01)
-        
-        
-def read_static_points():
+        time.sleep(config['mouse_pos_collecting_freq'])
+    
+def read_config():
     with open('config.json', 'r') as file:
-        points_str = file.read()
-        return json.loads(points_str)["static_points"]
+        config_str = file.read()
+        return json.loads(config_str)
    
-
 def append_mov_detailed(mov_detailed: list, static_points: list(), distances: list(), moving_point: tuple):
     movement = list()
         
