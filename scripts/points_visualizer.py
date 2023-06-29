@@ -18,7 +18,8 @@ def draw(subplot, points, title):
     for point in points:
         subplot.plot(point['x'], point['y'], marker="o", markersize=4, markeredgecolor="red", markerfacecolor="red")
     subplot.set_title(title)
-    subplot.grid(True)
+    subplot.grid(which='both')
+    subplot.minorticks_on()
 
 def print_config_values_and_save(img_name):
     with open('config.json', 'r') as file:
