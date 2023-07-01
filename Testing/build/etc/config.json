@@ -1,0 +1,19 @@
+{
+    "mouse_pos_collecting_freq": 0.01,
+    "static_points":[
+        [0, 0], 
+        [1919, 0], 
+        [0, 1079], 
+        [1919, 1079], 
+        [500, 500]
+    ],
+    "kalman": {
+        "initial_error_covariance": 1,
+        "process_noize": 0.01,
+        "measurement_noize": 1
+    },
+    "monte_carlo": {
+        "std_dev": 0.1,
+        "iteraions": 10000
+    }
+}

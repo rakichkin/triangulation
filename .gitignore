@@ -1,3 +1,7 @@
 .vs/
-Triangulation/bin
-Triangulation/obj
+
+Testing/bin
+Testing/obj
+
+Algorithms/bin
+Algorithms/obj
