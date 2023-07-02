@@ -12,8 +12,7 @@ public class Program
 
 	static void Main(string[] args)
 	{
-		_settings = JsonConvert.DeserializeObject<Configuration>(File.ReadAllText(
-			Path.Combine("etc", "config.json")))!;
+		_settings = Configuration.GetConfiguration();
 
 		var dataDirectory = Path.Combine("etc", "data");
 		if(!Directory.Exists(dataDirectory)) Directory.CreateDirectory(dataDirectory);

@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Runtime.Serialization;
 
-namespace Testing;
+namespace Algorithms;
 
 [DataContract]
 public record Configuration
@@ -14,4 +14,9 @@ public record Configuration
 
 	[JsonProperty("monte_carlo")]
 	public dynamic MonteCarlo { get; set; }
+
+	public static Configuration GetConfiguration()
+	{
+		return JsonConvert.DeserializeObject<Configuration>(File.ReadAllText("config.json"));
+	}
 }

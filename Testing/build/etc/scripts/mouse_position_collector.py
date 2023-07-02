@@ -31,7 +31,7 @@ def main():
         time.sleep(config['mouse_pos_collecting_freq'])
     
 def read_config():
-    with open(os.path.join('..', 'config.json'), 'r') as file:
+    with open(os.path.join('..', '..', 'config.json'), 'r') as file:
         config_str = file.read()
         return json.loads(config_str)
    

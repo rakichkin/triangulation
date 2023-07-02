@@ -8,7 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="etc\config.json" />
     <None Remove="etc\scripts\mouse_position_collector.py" />
     <None Remove="etc\scripts\points_visualizer.py" />
     <None Remove="etc\scripts\requirements.txt" />
@@ -17,9 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="etc\config.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="etc\start_test.bat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -46,5 +42,4 @@
   <ItemGroup>
     <ProjectReference Include="..\Algorithms\Algorithms.csproj" />
   </ItemGroup>
-
 </Project>

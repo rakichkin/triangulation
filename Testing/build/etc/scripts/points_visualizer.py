@@ -25,7 +25,7 @@ def draw(subplot, points, title):
     subplot.minorticks_on()
 
 def print_config_values_and_save(img_name):
-    with open(os.path.join('..', 'config.json'), 'r') as file:
+    with open(os.path.join('..', '..', 'config.json'), 'r') as file:
         text = file.read()
     
     img = Image.open(img_name)
@@ -48,18 +48,13 @@ def deserialize_json(file_path:str):
     return data
 
 def read_config():
-    with open(os.path.join('..', 'config.json'), 'r') as file:
+    with open(os.path.join('..', '..', 'config.json'), 'r') as file:
         config_str = file.read()
         return json.loads(config_str)
     
 config = read_config()
 
 def main():
-    # src_point_coords = deserialize_json('.\\data\\real_moving_point_coords.json')
-    # unfiltered_triang_point_coord = deserialize_json('.\\data\\unfiltered_triangulation.json')
-    # kalman_triang_point_coord = deserialize_json('.\\data\\kalman_triangulation.json')
-    # mkarlo_triang_point_coord = deserialize_json('.\\data\\monte_carlo_triangulation.json')
-    
     src_point_coords = deserialize_json(os.path.join('..', 'data', 'real_moving_point_coords.json'))
     unfiltered_triang_point_coord = deserialize_json(os.path.join('..', 'data', 'unfiltered_triangulation.json'))
     kalman_triang_point_coord = deserialize_json(os.path.join('..', 'data', 'kalman_triangulation.json'))

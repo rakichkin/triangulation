@@ -3,9 +3,7 @@
     "static_points":[
         [0, 0], 
         [1919, 0], 
-        [0, 1079], 
-        [1919, 1079], 
-        [500, 500]
+        [0, 1079]
     ],
     "kalman": {
         "initial_error_covariance": 1,
