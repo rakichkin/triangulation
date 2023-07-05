@@ -2,77 +2,102 @@
              xmlns:local="clr-namespace:GUI.Views"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             Width="550"
-             Height="650">
-    <Grid Background="White">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="100" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
+             Width="500"
+             Height="550">
+	<Grid Background="White">
+		<Grid.RowDefinitions>
             <RowDefinition Height="80" />
+            <RowDefinition Height="365" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0"
            VerticalAlignment="Center"
            HorizontalAlignment="Center" 
-           Width="399"
+           Width="400"
            Text="НАСТРОЙКА ПАРАМЕТРОВ СГЛАЖИВАНИЯ" 
            TextAlignment="Center" 
-           FontSize="18" />
+           FontSize="18" 
+           Margin="0 0 0 50" />
 
-        <StackPanel Grid.Row="1"
-                    Orientation="Horizontal"
-                    VerticalAlignment="Center" 
-                    HorizontalAlignment="Center">
-            <TextBlock Text="Начальная ковариация ошибки:"
-                       Margin="0, 0, 20, 0" FontSize="14"/>
-            <Slider Width="150" 
-                    Minimum="0" 
-                    Maximum="1" />
-            <TextBox Width="50"
-                     Text="Значение" />
-        </StackPanel>
 
-        <StackPanel Grid.Row="2"
-                    Orientation="Horizontal"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Center">
-            <TextBlock Text="Начальная ковариация ошибки:" 
-                       Margin="0, 0, 20, 0" FontSize="14"/>
-            <Slider Width="150" 
-                    Minimum="0" 
-                    Maximum="1" />
-            <TextBox Width="50"
-                     Text="Значение" />
-        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="270"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="3"
-                    Orientation="Horizontal"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Center">
-            <TextBlock Text="Процесс шума:" 
-                       Margin="0, 0, 20, 0" FontSize="14"/>
-            <Slider Width="150" 
-                    Minimum="0" 
-                    Maximum="1" />
-            <TextBox Width="50" 
-                     Text="Значение" />
-        </StackPanel>
 
-        <StackPanel Grid.Row="4"
-                    Orientation="Horizontal"
-                    VerticalAlignment="Center" 
-                    HorizontalAlignment="Center">
-            <TextBlock Text="Шум при измерении:" 
-                       Margin="0, 0, 20, 0" FontSize="14"/>
-            <Slider Width="150" 
-                    Minimum="0" 
-                    Maximum="1" />
-            <TextBox Width="50" 
-                     Text="Значение" />
-        </StackPanel>
-        <Button Grid.Row="5" Content="Сохранить"/>
-    </Grid>
+            <StackPanel Grid.Column="0">
+                <TextBlock Text="Общий коэффициент сглаживания:"
+                           Margin="20, 0, 0, 40" 
+                           FontSize="15"/>
+                <TextBlock Text="Начальная ковариация ошибки:" 
+                           Margin="20, 0, 0, 40"
+                           FontSize="15"/>
+                <TextBlock Text="Процесс шума:" 
+                           Margin="20, 0, 0, 40"
+                           FontSize="15" />
+                <TextBlock Text="Шум при измерении:" 
+                           Margin="20, 0, 0, 40"
+                           FontSize="15" />
+            </StackPanel>
+
+			
+            <StackPanel Grid.Column="1">
+                <Slider Width="150" 
+                        Minimum="0" 
+                        Maximum="10"
+						Margin="0, 0, 0, 45"
+						Value="{Binding SmoothingCoefficient, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <Slider Width="150" 
+                        Minimum="0" 
+                        Maximum="10"
+                        Margin="0, 0, 0, 40"
+						Value="{Binding ErrorСovariance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <Slider Width="150" 
+                        Minimum="0" 
+                        Maximum="10" 
+                        Margin="0, 0, 0, 42"
+						Value="{Binding ProcessNoise, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <Slider Width="150" 
+                        Minimum="0" 
+                        Maximum="10"
+						Value="{Binding MeasurementNoize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+						Margin="0, 0, 0, 40"/>
+            </StackPanel>
+
+			
+			<StackPanel Grid.Column="2">
+                <TextBox Width="50"
+						 Text="{Binding SmoothingCoefficient, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}"
+						 Margin="0, 0, 0, 45"/>
+                <TextBox Width="50"
+						 Text="{Binding ErrorСovariance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}"
+                         Margin="0, 0, 0, 40"/>
+                <TextBox Width="50"
+						 Text="{Binding ProcessNoise, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}"
+						 Margin="0, 0, 0, 42"/>
+                <TextBox Width="50"
+						 Text="{Binding MeasurementNoize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}"
+						 Margin="0, 0, 0, 40"/>
+            </StackPanel>
+        </Grid>
+
+
+        <Button Grid.Row="2" 
+                Content="Сохранить"
+                Margin="80, 10"
+                FontSize="15" 
+                Height="53"
+                Command="{Binding SaveParametersCommand}"/>
+		<TextBlock HorizontalAlignment="Center"
+				   Opacity="{Binding SaveCompleteOpacity}"
+			       Grid.Row="2"
+				   Text="Сохранение успешно выполнено!"
+				   FontWeight="DemiBold"
+				   FontSize="15"
+				   Margin="0,0,0,82" />
+	</Grid>
 </UserControl>

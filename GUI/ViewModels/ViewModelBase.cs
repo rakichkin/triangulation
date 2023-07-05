@@ -2,7 +2,7 @@
 
 namespace GUI.ViewModels
 {
-	class ViewModelBase : INotifyPropertyChanged
+	public class ViewModelBase : INotifyPropertyChanged
 	{
 		public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -10,5 +10,5 @@ namespace GUI.ViewModels
 		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
-    }
+	}
 }

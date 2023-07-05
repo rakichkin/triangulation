@@ -8,7 +8,7 @@
         Title="Smoothing Parameters"
         ResizeMode="NoResize"
         Width="550"
-        Height="675">
+        Height="690">
     <Grid>
         <local:MainMenuView DataContext="{Binding CurrentViewModel}" />
     </Grid>

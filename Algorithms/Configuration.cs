@@ -15,8 +15,12 @@ public record Configuration
 	[JsonProperty("monte_carlo")]
 	public dynamic MonteCarlo { get; set; }
 
-	public static Configuration GetConfiguration()
+	public static Configuration GetConfiguration(string pathToConfig = null)
 	{
+		if(pathToConfig != null )
+		{
+			return JsonConvert.DeserializeObject<Configuration>(File.ReadAllText(pathToConfig));
+		}
 		return JsonConvert.DeserializeObject<Configuration>(File.ReadAllText("config.json"));
 	}
 }

@@ -1,6 +1,6 @@
 ﻿namespace GUI.ViewModels
 {
-	class MainViewModel : ViewModelBase
+	public class MainViewModel : ViewModelBase
 	{
 		public ViewModelBase CurrentViewModel { get; }
 
