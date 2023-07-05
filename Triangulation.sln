@@ -7,6 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Algorithms", "Algorithms\Al
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Testing", "Testing\Testing.csproj", "{BA2B4C1F-76F2-4442-8344-C98C6EE34D83}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUI", "GUI\GUI.csproj", "{729EBE73-1B38-48D9-B36B-5E6128C60226}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Testing", "Testing\Testing.csproj", "{BA2B4C1F-76F2-4442-8344-C98C6EE34D83}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceWorkingSimulation", "DeviceWorkingSimulation\DeviceWorkingSimulation.csproj", "{3931DA32-7633-49FC-AA06-3EC8FB9CD06D}"
 EndProject
 Global
@@ -23,10 +26,6 @@ Global
 		{BA2B4C1F-76F2-4442-8344-C98C6EE34D83}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA2B4C1F-76F2-4442-8344-C98C6EE34D83}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA2B4C1F-76F2-4442-8344-C98C6EE34D83}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3931DA32-7633-49FC-AA06-3EC8FB9CD06D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3931DA32-7633-49FC-AA06-3EC8FB9CD06D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3931DA32-7633-49FC-AA06-3EC8FB9CD06D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3931DA32-7633-49FC-AA06-3EC8FB9CD06D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

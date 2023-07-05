@@ -13,14 +13,17 @@ public class Program
 	static void Main(string[] args)
 	{
 		_settings = Configuration.GetConfiguration();
+		string _pathToDataDirectory = Path.Combine("etc", "data");
+		string _pathToAllRawDistances = Path.Combine(_pathToDataDirectory, "movements_short.json");
+		if(!Directory.Exists(_pathToDataDirectory)) 
+			Directory.CreateDirectory(_pathToDataDirectory);
+		
 
-		var dataDirectory = Path.Combine("etc", "data");
-		if(!Directory.Exists(dataDirectory)) Directory.CreateDirectory(dataDirectory);
+		var allRawDistances = 
+			JsonConvert.DeserializeObject<List<List<double>>>(File.ReadAllText(_pathToAllRawDistances));
 
-		var allRawDistances = JsonConvert.DeserializeObject<List<List<double>>>(
-			File.ReadAllText(Path.Combine(dataDirectory, "movements_short.json")));
+		var staticPoints = ReadStaticPoints(_pathToDataDirectory);
 
-		var staticPoints = ReadStaticPoints(dataDirectory);
 
 		// Производим триангуляцию на сырых неотфильтрованных данных
 		var trilateratedUnfilteredPoints = Trilaterate(allRawDistances, staticPoints);
